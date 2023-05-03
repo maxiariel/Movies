@@ -11,6 +11,7 @@ import {
   ContentTitle,
   Description,
   Image,
+  Loading,
   ProgressBar,
   Wrapper,
 } from "./StyledMovieDetail";
@@ -19,9 +20,13 @@ interface IProgressBarProps {
   porcentage: number;
 }
 
+interface IPropsContext{
+  APIKey: string
+}
+
 export default function MovieDetail() {
-  const { id }: any = useParams();
-  const { APIKey }: any = useContext(MovieContext);
+  const { id } = useParams<string>();
+  const { APIKey }: IPropsContext = useContext(MovieContext);
   const [movie, setMovie] = useState<IMovie | null>(null);
 
   useEffect(() => {
@@ -37,7 +42,7 @@ export default function MovieDetail() {
   }, [id]);
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return <Loading>Loading...</Loading>;
   }
 
   const progressBar = ({ porcentage }: IProgressBarProps) => {

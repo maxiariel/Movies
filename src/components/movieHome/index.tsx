@@ -6,17 +6,21 @@ import MovieCard from "../movieCard/MovieCard";
 import SearchMovie from "../searchMovie/SearchMovie";
 import { Wrapper } from "./StyledIndex";
 
+interface IPropsContext{
+  movies: IMovie[];
+}
+
 export default function MovieHome() {
-  const { movies }: any = useContext(MovieContext);
+  const { movies }:IPropsContext = useContext(MovieContext);
   return (
     <div>
-      <SearchMovie/>
-        <Wrapper>
-          {movies?.map((value: IMovie) => {
-        return <MovieCard key={value.id} {...value} />;
-      })}
-        </Wrapper>
-      
+      <SearchMovie />
+      <Wrapper>
+        {movies?.map((value: IMovie) => {
+          return <MovieCard key={value.id} {...value} />;
+        })}
+      </Wrapper>
+
       <Pagination />
     </div>
   );

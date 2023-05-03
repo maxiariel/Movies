@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react";
 import { createContext } from "react";
-import { IMovie } from "../types";
-
-export const MovieContext = createContext({});
+import { IMovie, IContext } from "../types";
 
 interface IProps {
   children: React.ReactNode;
 }
 
+export const MovieContext = createContext<IContext>({
+  movies: [],
+  totalPages: 0,
+  currentPage: 1,
+  setCurrentPages: () => {},
+  APIKey: "",
+});
+
 export default function MovieProvider({ children }: IProps) {
-  const [movies, setMovies] = useState<IMovie[]>();
+  const [movies, setMovies] = useState<IMovie[]>([]);
   const [totalPages, setTotalPages] = useState<number>(0);
   const [currentPage, setCurrentPages] = useState<number>(1);
 
@@ -25,17 +31,21 @@ export default function MovieProvider({ children }: IProps) {
     setCurrentPages(data.page);
   };
 
-
-
   useEffect(() => {
     getMovie();
   }, [currentPage]);
 
+  const value: IContext = {
+    movies,
+    totalPages,
+    currentPage,
+    setCurrentPages,
+    APIKey,
+  };
+
   return (
-    <MovieContext.Provider
-      value={{ movies, totalPages, currentPage, setCurrentPages, APIKey }}
-    >
+    <MovieContext.Provider value={value}>
       {children}
-    </MovieContext.Provider>
+      </MovieContext.Provider>
   );
 }
