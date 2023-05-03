@@ -19,7 +19,7 @@ export const PageButton = styled.button<PageButtonProps>`
   padding: 10px;
   margin: 0 5px;
   font-size: 14px;
-  border-radius:10px;
+  border-radius: 10px;
   cursor: pointer;
   &:hover {
     background-color: ${({ isActive }) => (isActive ? "#2a69dd" : "#ccc")};
@@ -38,7 +38,7 @@ export const PaginationArrowButton = styled.button`
   padding: 10px;
   margin: 0 5px;
   font-size: 14px;
-  border-radius:10px;
+  border-radius: 10px;
   cursor: pointer;
   &:hover {
     background-color: #2a69dd;
