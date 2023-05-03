@@ -23,7 +23,7 @@ export default function MovieProvider({ children }: IProps) {
 
   const getMovie = async () => {
     if(!APIKey){
-      return console.log("Error")
+      return alert("Error, no apikey charge")
     }
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&page=${currentPage}`
