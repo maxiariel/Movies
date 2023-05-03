@@ -19,9 +19,12 @@ export default function MovieProvider({ children }: IProps) {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [currentPage, setCurrentPages] = useState<number>(1);
 
-  const APIKey = "98578ae8262d0e585ef78f73074e6bb5";
+  const APIKey:string = process.env.REACT_APP_API_KEY ?? ""
 
   const getMovie = async () => {
+    if(!APIKey){
+      return console.log("Error")
+    }
     const response = await fetch(
       `https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}&page=${currentPage}`
     );
