@@ -33,6 +33,7 @@ export default function MovieProvider({ children }: IProps) {
 
   useEffect(() => {
     getMovie();
+// eslint-disable-next-line react-hooks/exhaustive-deps    
   }, [currentPage]);
 
   const value: IContext = {
