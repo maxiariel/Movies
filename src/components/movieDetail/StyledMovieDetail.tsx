@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface IProgressBarProps {
-  porcentage?: number;
+  percentage?: number;
 }
 
 export const BackgroundCard = styled.div`
@@ -20,10 +20,11 @@ export const BackgroundCard = styled.div`
     filter: blur(2px);
     @media (max-width: 768px) {
       max-height: 100%;
+      object-fit:cover;
     }
   }
   @media (max-width: 768px) {
-    height: auto;
+    height: 100%;
     padding-bottom: 20px;
   }
 `;
@@ -107,7 +108,7 @@ export const Bar = styled.div`
 export const ProgressBar = styled.div<IProgressBarProps>`
   height: 100%;
   background-color: #00be20;
-  width: ${(props) => props.porcentage?.toString()}%;
+  width: ${(props) => props.percentage?.toString()}%;
   transition: width 0.5s ease-in-out;
   border-radius: 10px;
   & > div {

@@ -6,6 +6,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  width:105%;
 `;
 
 export const Input = styled.input`

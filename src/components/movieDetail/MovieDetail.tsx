@@ -17,7 +17,7 @@ import {
 } from "./StyledMovieDetail";
 
 interface IProgressBarProps {
-  porcentage: number;
+  percentage: number;
 }
 
 interface IPropsContext{
@@ -39,25 +39,24 @@ export default function MovieDetail() {
     };
 
     idMovie();
+    // eslint-disable-next-line react-hooks/exhaustive-deps  
   }, [id]);
 
   if (!movie) {
     return <Loading>Loading...</Loading>;
   }
 
-  const progressBar = ({ porcentage }: IProgressBarProps) => {
+  const progressBar = ({ percentage }: IProgressBarProps) => {
     return (
       <Bar>
-        <ProgressBar porcentage={porcentage}>
-          <div>{porcentage} %</div>
+        <ProgressBar percentage={percentage}>
+          <div>{percentage} %</div>
         </ProgressBar>
       </Bar>
     );
   };
 
-  const voteAverage = parseFloat(movie?.vote_average) * 10;
-
-  console.log(movie?.vote_average);
+  const voteAverage = parseFloat((parseFloat(movie?.vote_average) * 10).toFixed(2));
   return (
     <BackgroundCard>
       <img
@@ -80,7 +79,7 @@ export default function MovieDetail() {
               Overview: <span>{movie?.overview}</span>
             </Description>
             <Description>
-              Punctuation {progressBar({ porcentage: voteAverage })}
+              Punctuation {progressBar({ percentage: voteAverage })}
             </Description>
             <Description>
               Votes: <span>{movie?.vote_count} Votes</span>
