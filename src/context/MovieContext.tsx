@@ -19,7 +19,7 @@ export default function MovieProvider({ children }: IProps) {
   const [totalPages, setTotalPages] = useState<number>(0);
   const [currentPage, setCurrentPages] = useState<number>(1);
 
-  const APIKey:string = process.env.REACT_APP_API_KEY ?? ""
+  const APIKey:string = process.env.REACT_APP_API_KEY || ""
 
   const getMovie = async () => {
     if(!APIKey){
